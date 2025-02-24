@@ -4,6 +4,10 @@ import pickle
 movies = pickle.load(open("movies_list.pkl", 'rb'))
 similar = pickle.load(open("similar.pkl", 'rb'))
 
+st.set_page_config(page_title="Movie Recommendation System", page_icon="🎬", layout="wide")
+
+
+
 st.header("Movie Recomendation System")
 select_value = st.selectbox("Select Movies from Dropdown", movies)
 
