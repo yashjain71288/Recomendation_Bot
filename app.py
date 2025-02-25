@@ -34,14 +34,14 @@ if st.session_state.page == "Movies":
 
     with gzip.open("movies_list.pkl.gz", "rb") as f:
         movies = pickle.load(f)
-    with gzip.open("similar.pkl.gz", "rb") as f:
-        similar = pickle.load(f)
+    with gzip.open("movies_similar.pkl.gz", "rb") as f:
+        movies_similar = pickle.load(f)
 
     select_value = st.selectbox("Select a Movie", movies['Series_Title'])
 
     def recommend(movie):
         index = movies[movies['Series_Title'] == movie].index[0]
-        distance = sorted(list(enumerate(similar[index])), reverse=True, key=lambda x: x[1])
+        distance = sorted(list(enumerate(movies_similar[index])), reverse=True, key=lambda x: x[1])
         return [movies.iloc[i[0]].Series_Title for i in distance[1:6]]
 
     if st.button("Show Recommendations"):
